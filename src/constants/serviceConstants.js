@@ -1,0 +1,11 @@
+// Api
+export const URL = "https://api.helpinghand.unicrow.com";
+export const API_URL = URL + "/v1";
+
+
+// Status Codes
+export const HTTP_200_OK = 200;
+export const HTTP_201_CREATED = 201;
+export const HTTP_204_NO_CONTENT = 204;
+export const HTTP_400_BAD_REQUEST = 400;
+export const HTTP_404_NOT_FOUND = 404;
