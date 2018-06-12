@@ -1,5 +1,11 @@
 // Constants
-import { changeCase } from 'constants/baseConstants';
+import { changeCase } from "../constants/baseConstants";
+
+//Api
+export const url = "http://127.0.0.1:8000";
+export const api_url = url + "/v1";
+export const api_auth_login_url = url + "/auth/login/";
+export const api_users_url = api_url + "/users/";
 
 
 export function setAuthInformations(auth_token, user_id) {
