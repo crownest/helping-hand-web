@@ -8,7 +8,7 @@ export const api_auth_login_url = url + "/auth/login/";
 export const api_users_url = api_url + "/users/";
 export const api_needs_url = api_url + "/needs/";
 export const api_needitems_url = api_url + "/needitems/";
-
+export const api_categories_url = api_url + "/categories/";
 
 export function setAuthInformations(auth_token, user_id) {
   if (auth_token && user_id) {
