@@ -1,8 +1,138 @@
-.header {
-  text-align: center;
-  height: 100%;
-
-  &__title {
-    font-size: 1.5em;
+header {
+  position: relative;
+  z-index: 10;
+  padding: 18px 0 23px;
+  height: $header-h; 
+	background-color: $smooth-gray;
+  .logo {
+    float: left;
+    margin-top: 7px;
+  }
+  .head-form {
+    float: left;
+    width: 600px;
+    margin-left: 100px;
+    .input {
+      position: relative;
+      float: left;
+      width: 250px;
+      margin-right: 70px;
+      &:after {
+        content: "info";
+        position: absolute;
+        top: 50%;
+        right: -2px;
+        z-index: 1;
+        margin-top: 2px;
+        transform: translateY(-50%);
+        font: 20px "Material Icons";
+        font-feature-settings: 'liga';
+        color: $smooth-green;
+      }
+    }
+    .select-box {
+      float: left;
+      width: 250px;
+      &:after {
+        content: "filter_list";
+        font-feature-settings: 'liga';
+      }
+    }
+  }
+  .head-nav {
+    float: right;
+    margin: 6px 150px 0 0;
+    .login-signup {
+      li {
+        position: relative;
+        display: inline-block;
+        vertical-align: middle;
+        margin: 0 5px;
+        &:after {
+          content: "/";
+          position: absolute;
+          top: 0px;
+          right: -10px;
+          font-size: 26px;
+          color: $smooth-green;
+        }
+        &:last-child:after {display: none;}
+      }
+      a {
+        font-size: 16px;
+        line-height: 32px;
+        color: $gray;
+      }
+    }
+    .user-nav {
+      position: relative;
+      margin: 8px 0 0;
+      ul {
+        display: none;
+        position: absolute;
+        top: calc(100% + 12px);
+        left: 50%;
+        transform: translateX(-50%);
+        min-width: 150px;
+        padding: 15px;
+        border-radius: 4px;
+        background-color: #fff;
+        &:after, &:before {
+          content: "";
+          position: absolute;
+          top: -12px;
+          left: 0;
+          width: 100%;
+          height: 12px;
+        }
+        &:before {
+          top: -15px;
+          left: 50%;
+          transform: translateX(-50%);
+          width: 0;
+          height: 0;
+          border: 8px solid transparent;
+          border-bottom: 8px solid #fff;
+        }
+      }
+      li {
+        border-left: 1px solid $smooth-green;
+        &:last-child {
+          padding-top: 30px;
+          a {color: $red;}
+        }
+        a {
+          display: block;
+          padding: 0 8px;
+          font-size: 14px;
+          color: $smooth-gray0;
+          &:hover {color: $smooth-green;}
+        }
+      }
+      &:hover {
+        ul {display: block;}
+      }
+    }
+    .username {
+      position: relative;
+      display: block;
+      padding-right: 25px;
+      font-weight: 600;
+      font-size: 16px;
+      cursor: pointer;
+      color: $smooth-gray0;
+      i {
+        position: absolute;
+        top: 1px;
+        right: 0;
+        font-size: 20px;
+      }
+    }
+  }
+  .menu-btn {
+    float: right;
+    margin-top: 8px;
+    color: $smooth-green;
+    i {font-size: 32px;}
   }
 }

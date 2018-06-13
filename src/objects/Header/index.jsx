@@ -1,30 +1,57 @@
 // Packages
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-
-// Components
-import Logo from 'components/Logo/index';
+import React, {Component} from 'react';
+import {Link} from 'react-router-dom';
 
 
 export default class Header extends Component {
-  render() {
-    const { url, title, logoColor } = this.props;
+    constructor(props) {
+        super(props);
+    }
+    handleClick = e => {
+        e.preventDefault();
+        this.props.rightNowHandler();
+    }
+    render() {
+        return (
+            <header>
+                <div className="container">
+                    <Link to="#" className="logo"><img src="/images/logo/logo.png" alt=""/></Link>
+                    <div className="head-form">
+                        <div className="input"><input type="text" placeholder="Search words"/></div>
+                        <div className="select-box">
+                            <select>
+                                <option>Location</option>
+                                <option>Option1</option>
+                                <option>Option2</option>
+                                <option>Option3</option>
+                                <option>Option4</option>
+                                <option>Option5</option>
+                            </select>
+                        </div>
+                    </div>
+                    <Link to="#" className="menu-btn"
+                          onClick={this.handleClick}><i
+                        className="material-icons">menu</i></Link>
+                    <div className="head-nav">
+                        <ul className="login-signup">
+                            <li><Link to="#register" className="register-btn">Sign up</Link></li>
+                            <li><Link to="#login" className="login-btn">Login</Link></li>
+                        </ul>
 
-    return (
-      <header className="header">
-        <Logo url={url} color={logoColor} />
-        <h1 className="header__title">{title}</h1>
-      </header>
-    );
-  }
+                        <div className="user-nav hide">
+                            <span className="username">@johndoe <i className="material-icons">arrow_drop_down</i></span>
+                            <ul>
+                                <li><Link to="#">Supports</Link></li>
+                                <li><Link to="#">Needs</Link></li>
+                                <li><Link to="#">Settings</Link></li>
+                                <li><Link to="#">Exit</Link></li>
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+            </header>
+
+        );
+    }
 }
-
-
-Header.propTypes = {
-  title: PropTypes.string.isRequired
-};
-
-Header.defaultProps = {
-  url: "/",
-  logoColor: "green"
-};

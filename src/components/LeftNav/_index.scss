@@ -1,0 +1,56 @@
+.left-menu {
+  position: absolute;
+  top: calc(50% - 40px);
+  transform: translateY(-50%);
+  left: 0;
+  z-index: 10;
+  .open-btn {
+    display: block;
+    width: 67px;
+    height: 162px;
+    background: url(/images/bg/left-btn-bg.png) no-repeat 0 0;
+    text-indent: -999999px;
+  }
+  .check, .add, .wait {
+    position: absolute;
+    top: 32px;
+    left: -150px;
+    width: 100px;
+    height: 100px;
+    padding: 15px 10px;
+    box-shadow: 1px 2px 7px 0 rgba(102,100,100,0.2);
+    border-radius: 50%;
+    background-color: $smooth-green;
+    font-size: 14px;
+    line-height: 18px;
+    color: #fff;
+    text-align: center;
+    img {
+      display: block;
+      margin: 0 auto;
+    }
+    &:hover {opacity: .7;}
+  }
+  .add {
+    padding: 24px 10px;
+    background-color: $smooth-blue; 
+  }
+  .wait {
+    background-color: $smooth-red; 
+  }
+  &.open {
+    .open-btn {background: url(/images/bg/left-btn-active-bg.png) no-repeat 0 0;}
+    .check {
+      top: -90px;
+      left: 65px;
+    }
+    .add {
+      top: 32px;
+      left: 150px;
+    }
+    .wait {
+      top: 155px;
+      left: 65px;
+    }
+  }
+}
