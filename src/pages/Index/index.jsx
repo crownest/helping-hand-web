@@ -7,8 +7,6 @@ import {language} from 'constants/languageConstants';
 // Objects
 import Header from 'objects/Header/index'
 
-//Services
-import {authLogin} from "../../services/coreServices";
 
 export default class Index extends Component {
     constructor() {
@@ -21,15 +19,6 @@ export default class Index extends Component {
         };
     }
 
-    componentDidMount() {
-        const data = {
-            email: "crownest@unicrow.com",
-            password: "helping"
-        }
-        authLogin(data, (response) => {
-            console.log(response);
-        });
-    }
 
     render() {
         const {title} = this.state;
