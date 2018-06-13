@@ -7,6 +7,8 @@ import {language} from 'constants/languageConstants';
 // Objects
 import Header from 'objects/Header/index'
 
+//Services
+import {listNeed} from "../../services/needServices";
 
 export default class Index extends Component {
     constructor() {
@@ -19,6 +21,11 @@ export default class Index extends Component {
         };
     }
 
+    componentDidMount() {
+        listNeed(response => {
+            console.log(response);
+        });
+    }
 
     render() {
         const {title} = this.state;
