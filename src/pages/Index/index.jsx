@@ -8,7 +8,7 @@ import {language} from 'constants/languageConstants';
 import Header from 'objects/Header/index'
 
 //Services
-import {listNeed} from "../../services/needServices";
+import {listNeedItem} from "../../services/needitemServices";
 
 export default class Index extends Component {
     constructor() {
@@ -22,7 +22,7 @@ export default class Index extends Component {
     }
 
     componentDidMount() {
-        listNeed(response => {
+        listNeedItem(response => {
             console.log(response);
         });
     }
