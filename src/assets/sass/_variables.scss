@@ -1,0 +1,33 @@
+// Colors
+$black: #333;
+$gray: #8B95A1;
+$smooth-gray0: #778391;
+$smooth-gray: #F9F9F9;
+$smooth-green: #48D2A0;
+$light-gray: #DADADA;
+$pastel-gray: #4D758B;
+$red: #EF5252;
+$smooth-red: #D0021B;
+$smooth-blue: #00A0DC;
+
+
+// Fonts
+$source-sans: 'Source Sans Pro', Helvetica, Arial, sans-serif;
+
+// Defaults
+$bg-color: #fff;
+$df-size: 12px;
+$df-line-height: normal;
+
+
+// Links
+$link: blue;
+$link-hover: tint($link, 15%);
+
+// Sizes
+$header-h: 80px;
+$footer-h: 170px;
+
+
+// Bourbon Warning
+$output-bourbon-deprecation-warnings: false;
