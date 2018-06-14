@@ -11,42 +11,49 @@ export default class Header extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            showModal: false,
-            seeModal: false
+            registerModal: false,
+            loginModal: false,
+            forgotPasswordModal: false
         };
 
-        this.handleOpenModal = this.handleOpenModal.bind(this);
-        this.handleCloseModal = this.handleCloseModal.bind(this);
+        this.handleOpenRegister = this.handleOpenRegister.bind(this);
+        this.handleCloseRegister = this.handleCloseRegister.bind(this);
 
-        this.seeOpenModal = this.seeOpenModal.bind(this);
-        this.seeCloseModal = this.seeCloseModal.bind(this);
+        this.handleOpenLogin = this.handleOpenLogin.bind(this);
+        this.handleCloseLogin = this.handleCloseLogin.bind(this);
+
+        this.handleOpenForgotPassword = this.handleOpenForgotPassword.bind(this);
+        this.handleCloseForgotPassword = this.handleCloseForgotPassword.bind(this);
     }
 
 
-    handleOpenModal() {
-        this.setState({showModal: true});
+    handleOpenRegister() {
+        this.setState({registerModal: true});
     }
 
-    handleCloseModal() {
-        this.setState({showModal: false});
+    handleCloseRegister() {
+        this.setState({registerModal: false});
     }
 
-    seeOpenModal() {
-        this.setState({seeModal: true});
+    handleOpenLogin() {
+        this.setState({loginModal: true});
     }
 
-    seeCloseModal() {
-        this.setState({seeModal: false});
+    handleCloseLogin() {
+        this.setState({loginModal: false});
+    }
+
+    handleOpenForgotPassword() {
+        this.setState({forgotPasswordModal: true});
+    }
+
+    handleCloseForgotPassword() {
+        this.setState({forgotPasswordModal: false});
     }
 
     handleClick = e => {
         e.preventDefault();
         this.props.rightNowHandler();
-    }
-
-    onClick(event) {
-        this.handleCloseModal;
-        this.seeOpenModal;
     }
 
     render() {
@@ -72,10 +79,10 @@ export default class Header extends Component {
                         className="material-icons">menu</i></Link>
                     <div className="head-nav">
                         <ul className="login-signup">
-                            <li><Link to="#register" className="register-btn" onClick={this.handleOpenModal}>Sign
+                            <li><Link to="#register" className="register-btn" onClick={this.handleOpenRegister}>Sign
                                 up</Link>
                             </li>
-                            <li><Link to="#login" className="login-btn" onClick={this.seeOpenModal}>Login</Link></li>
+                            <li><Link to="#login" className="login-btn" onClick={this.handleOpenLogin}>Login</Link></li>
                         </ul>
 
                         <div className="user-nav hide">
@@ -90,14 +97,16 @@ export default class Header extends Component {
 
                     </div>
                 </div>
-                <Modal
-                    isOpen={this.state.showModal}
-                    contentLabel="Register"
-                    onRequestClose={this.handleCloseModal}>
-                    <div id="register" className="modal">
 
+                {/*Register Modal*/}
+                <Modal
+                    isOpen={this.state.registerModal}
+                    contentLabel="Register"
+                    onRequestClose={this.handleCloseRegister}>
+
+                    <div id="register" className="modal">
                         <div className="modal-content">
-                            <a href="#" className="close" onClick={this.handleCloseModal}><i
+                            <a href="#" className="close" onClick={this.handleCloseRegister}><i
                                 className="material-icons">close</i></a>
                             <div className="modal-img"></div>
                             <div className="form-area">
@@ -148,22 +157,25 @@ export default class Header extends Component {
                                     <button type="submit" className="btn full">Continue</button>
                                 </div>
                                 <div className="form-item">
-                                    <p className="form-info">Do you already have an account? <a href="#" onClick={(event) => { this.handleCloseModal(); this.seeOpenModal();}}>Log
-                                        in here</a>
-                                    </p>
+                                    <p className="form-info">Do you already have an account? <a href="#"
+                                                                                                onClick={(event) => {
+                                                                                                    this.handleCloseRegister();
+                                                                                                    this.handleOpenLogin();
+                                                                                                }}>Log in here</a></p>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </Modal>
 
+                {/*Login Modal*/}
                 <Modal
-                    isOpen={this.state.seeModal}
+                    isOpen={this.state.loginModal}
                     contentLabel="Login"
-                    onRequestClose={this.seeCloseModal}>
+                    onRequestClose={this.handleCloseLogin}>
                     <div id="login" className="modal login-modal">
                         <div className="modal-content">
-                            <a href="#" className="close" onClick={this.seeCloseModal}><i
+                            <a href="#" className="close" onClick={this.handleCloseLogin}><i
                                 className="material-icons">close</i></a>
                             <div className="form-area">
                                 <div className="form-title">
@@ -175,13 +187,50 @@ export default class Header extends Component {
                                 </div>
                                 <div className="form-item">
                                     <input type="password" name="password" placeholder="Password"/>
-                                    <a href="#" className="forgot-password">Forgot Password</a>
+                                    <a href="#" className="forgot-password" onClick={this.handleOpenForgotPassword}>Forgot
+                                        Password</a>
                                 </div>
                                 <div className="form-item">
                                     <button type="submit" className="btn full">Login</button>
                                 </div>
                                 <div className="form-item">
-                                    <p className="form-info">If you're not a member yet, please <a href="#" onClick={(event) => { this.seeCloseModal(); this.handleOpenModal();}}>Register</a>
+                                    <p className="form-info">If you're not a member yet, please <a href="#"
+                                                                                                   onClick={(event) => {
+                                                                                                       this.handleCloseLogin();
+                                                                                                       this.handleOpenRegister();
+                                                                                                   }}>Register</a></p>
+                                </div>
+                            </div>
+                            <div className="modal-img"></div>
+                        </div>
+                    </div>
+                </Modal>
+
+                {/*Forgot Password Modal*/}
+                <Modal
+                    isOpen={this.state.forgotPasswordModal}
+                    contentLabel="ForgotPassword"
+                    onRequestClose={this.handleCloseForgotPassword}>
+
+                    <div id="forgot-password" className="modal forgot-password-modal">
+                        <div className="modal-content">
+                            <a href="#" className="close" onClick={this.handleCloseForgotPassword}><i className="material-icons">close</i></a>
+                            <div className="form-area">
+                                <div className="form-title">
+                                    <h4>Forgot Password.</h4>
+                                    <p>Fill in the required fields to log in.</p>
+                                </div>
+                                <div className="form-item">
+                                    <input type="email" name="email" placeholder="E-Mail"/>
+                                </div>
+                                <div className="form-item">
+                                    <button type="submit" className="btn full">Send</button>
+                                </div>
+                                <div className="form-item">
+                                    <p className="form-info">If you're not a member yet, please <a href="#" onClick={(event) => {
+                                                                                                    this.handleCloseForgotPassword();
+                                                                                                    this.handleOpenRegister();
+                                                                                                }}>Register</a>
                                     </p>
                                 </div>
                             </div>
@@ -190,7 +239,6 @@ export default class Header extends Component {
                     </div>
                 </Modal>
             </header>
-
         )
     }
 }
