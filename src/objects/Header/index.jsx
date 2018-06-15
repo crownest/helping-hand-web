@@ -2,7 +2,16 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import Modal from 'react-modal';
-import ReactDOM from 'react-dom';
+
+//Actions
+import {
+    HTTP_200_OK,
+    HTTP_201_CREATED,
+    HTTP_400_BAD_REQUEST
+} from "../../constants/serviceConstants";
+import {createUser} from "../../services/userServices";
+import {setAuthInformations} from "../../services/baseServices";
+import {authLogin} from "../../services/coreServices";
 
 Modal.setAppElement('#root');
 
@@ -13,7 +22,21 @@ export default class Header extends Component {
         this.state = {
             registerModal: false,
             loginModal: false,
-            forgotPasswordModal: false
+            forgotPasswordModal: false,
+            redirect: false,
+            email: "",
+            first_name: "",
+            last_name: "",
+            password: "",
+            confirm_password: "",
+            errors: {}
+        };
+
+        this.state = {
+            redirect: false,
+            email: "",
+            password: "",
+            errors: {}
         };
 
         this.handleOpenRegister = this.handleOpenRegister.bind(this);
@@ -24,6 +47,96 @@ export default class Header extends Component {
 
         this.handleOpenForgotPassword = this.handleOpenForgotPassword.bind(this);
         this.handleCloseForgotPassword = this.handleCloseForgotPassword.bind(this);
+
+        this.onChange = this.onChange.bind(this);
+        this.onSubmit = this.onSubmit.bind(this);
+        this.setErrors = this.setErrors.bind(this);
+        this.setRedirect = this.setRedirect.bind(this);
+        this.onReset = this.onReset.bind(this);
+
+        this.onSubmitx = this.onSubmitx.bind(this);
+
+    }
+
+    onChange = (e) => {
+        const state = this.state
+        state[e.target.name] = e.target.value;
+        this.setState(state);
+    }
+
+    setErrors = (errors) => {
+        this.setState({
+            errors: errors
+        });
+
+    }
+
+    setRedirect = (e) => {
+        this.setState({
+            redirect: true
+        });
+    }
+
+    onReset = (e) => {
+        this.setState({
+            email: "",
+            first_name: "",
+            last_name: "",
+            password: "",
+            confirm_password: "",
+            errors: {}
+        });
+    }
+
+    onSubmit = (e) => {
+        e.preventDefault();
+        var data = {
+            email: this.state.email,
+            first_name: this.state.first_name,
+            last_name: this.state.last_name,
+            password: this.state.password,
+            confirm_password: this.state.confirm_password
+        };
+
+        createUser(data, (response) => {
+            if (response) {
+                if (response.statusCode === HTTP_201_CREATED) {
+                    this.onReset();
+                    this.setRedirect();
+                } else if (response.statusCode === HTTP_400_BAD_REQUEST) {
+                    this.setErrors(response.body);
+                } else {
+                    this.onReset();
+                }
+            } else {
+                this.onReset();
+            }
+        });
+    }
+
+    onSubmitx = (e) => {
+        e.preventDefault();
+        var data = {
+            email: this.state.email,
+            password: this.state.password
+        };
+
+        authLogin(data, (response) => {
+            if (response) {
+                if (response.statusCode === HTTP_200_OK) {
+                    this.onReset();
+                    setAuthInformations(response.body.auth_token, response.body.user_id);
+                    this.setRedirect();
+                } else if (response.statusCode === HTTP_400_BAD_REQUEST) {
+                    this.setErrors(response.body);
+                } else {
+                    this.onReset();
+                }
+            } else {
+                this.onReset();
+            }
+            console.log(data);
+        });
     }
 
 
@@ -57,6 +170,8 @@ export default class Header extends Component {
     }
 
     render() {
+        const {email, first_name, last_name, password, confirm_password} = this.state;
+
         return (
             <header>
                 <div className="container">
@@ -104,7 +219,7 @@ export default class Header extends Component {
                     contentLabel="Register"
                     onRequestClose={this.handleCloseRegister}>
 
-                    <div id="register" className="modal">
+                    <form id="register" className="modal" onSubmit={this.onSubmit} onReset={this.onReset}>
                         <div className="modal-content">
                             <a href="#" className="close" onClick={this.handleCloseRegister}><i
                                 className="material-icons">close</i></a>
@@ -115,19 +230,24 @@ export default class Header extends Component {
                                     <p>Complete all the fields in order to complete your registration</p>
                                 </div>
                                 <div className="form-item">
-                                    <input type="text" name="name" placeholder="Name"/>
+                                    <input type="text" name="first_name" placeholder="Name" value={first_name}
+                                           onChange={this.onChange}/>
                                 </div>
                                 <div className="form-item">
-                                    <input type="text" name="surname" placeholder="Surname"/>
+                                    <input type="text" name="last_name" placeholder="Surname" value={last_name}
+                                           onChange={this.onChange}/>
                                 </div>
                                 <div className="form-item">
-                                    <input type="email" name="email" placeholder="E-Mail"/>
+                                    <input type="email" name="email" placeholder="E-Mail" value={email}
+                                           onChange={this.onChange}/>
                                 </div>
                                 <div className="form-item">
-                                    <input type="password" name="password" placeholder="Password"/>
+                                    <input type="password" name="password" placeholder="Password" value={password}
+                                           onChange={this.onChange}/>
                                 </div>
                                 <div className="form-item">
-                                    <input type="password" name="confirm-password" placeholder="Confirm Password"/>
+                                    <input type="password" name="confirm_password" placeholder="Confirm Password"
+                                           value={confirm_password} onChange={this.onChange}/>
                                 </div>
                                 <div className="form-item">
                                     <div className="select-box gender-select">
@@ -165,7 +285,7 @@ export default class Header extends Component {
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </form>
                 </Modal>
 
                 {/*Login Modal*/}
@@ -173,7 +293,8 @@ export default class Header extends Component {
                     isOpen={this.state.loginModal}
                     contentLabel="Login"
                     onRequestClose={this.handleCloseLogin}>
-                    <div id="login" className="modal login-modal">
+
+                    <form id="login" className="modal login-modal" onSubmit={this.onSubmitx} onReset={this.onReset}>
                         <div className="modal-content">
                             <a href="#" className="close" onClick={this.handleCloseLogin}><i
                                 className="material-icons">close</i></a>
@@ -183,10 +304,12 @@ export default class Header extends Component {
                                     <p>Fill in the required fields to log in.</p>
                                 </div>
                                 <div className="form-item">
-                                    <input type="email" name="email" placeholder="E-Mail"/>
+                                    <input type="email" name="email" placeholder="E-Mail" value={email}
+                                           onChange={this.onChange}/>
                                 </div>
                                 <div className="form-item">
-                                    <input type="password" name="password" placeholder="Password"/>
+                                    <input type="password" name="password" placeholder="Password" value={password}
+                                           onChange={this.onChange}/>
                                     <a href="#" className="forgot-password" onClick={this.handleOpenForgotPassword}>Forgot
                                         Password</a>
                                 </div>
@@ -203,7 +326,7 @@ export default class Header extends Component {
                             </div>
                             <div className="modal-img"></div>
                         </div>
-                    </div>
+                    </form>
                 </Modal>
 
                 {/*Forgot Password Modal*/}
@@ -214,7 +337,8 @@ export default class Header extends Component {
 
                     <div id="forgot-password" className="modal forgot-password-modal">
                         <div className="modal-content">
-                            <a href="#" className="close" onClick={this.handleCloseForgotPassword}><i className="material-icons">close</i></a>
+                            <a href="#" className="close" onClick={this.handleCloseForgotPassword}><i
+                                className="material-icons">close</i></a>
                             <div className="form-area">
                                 <div className="form-title">
                                     <h4>Forgot Password.</h4>
@@ -227,10 +351,11 @@ export default class Header extends Component {
                                     <button type="submit" className="btn full">Send</button>
                                 </div>
                                 <div className="form-item">
-                                    <p className="form-info">If you're not a member yet, please <a href="#" onClick={(event) => {
-                                                                                                    this.handleCloseForgotPassword();
-                                                                                                    this.handleOpenRegister();
-                                                                                                }}>Register</a>
+                                    <p className="form-info">If you're not a member yet, please <a href="#"
+                                                                                                   onClick={(event) => {
+                                                                                                       this.handleCloseForgotPassword();
+                                                                                                       this.handleOpenRegister();
+                                                                                                   }}>Register</a>
                                     </p>
                                 </div>
                             </div>
