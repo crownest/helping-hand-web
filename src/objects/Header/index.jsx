@@ -3,16 +3,19 @@ import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import Modal from 'react-modal';
 
-//Actions
+// Actions
 import {
     HTTP_200_OK,
     HTTP_201_CREATED,
     HTTP_400_BAD_REQUEST
 } from "../../constants/serviceConstants";
-import {createUser} from "../../services/userServices";
+
+// Services
+import {createUser, forgotUserPassword} from "../../services/userServices";
 import {setAuthInformations} from "../../services/baseServices";
 import {authLogin} from "../../services/coreServices";
 
+// React-Modal
 Modal.setAppElement('#root');
 
 
@@ -54,8 +57,8 @@ export default class Header extends Component {
         this.setRedirect = this.setRedirect.bind(this);
         this.onReset = this.onReset.bind(this);
 
-        this.onSubmitx = this.onSubmitx.bind(this);
-
+        this.onSubmitLogin = this.onSubmitLogin.bind(this);
+        this.onSubmitForgot = this.onSubmitForgot.bind(this);
     }
 
     onChange = (e) => {
@@ -114,7 +117,7 @@ export default class Header extends Component {
         });
     }
 
-    onSubmitx = (e) => {
+    onSubmitLogin = (e) => {
         e.preventDefault();
         var data = {
             email: this.state.email,
@@ -136,6 +139,27 @@ export default class Header extends Component {
                 this.onReset();
             }
             console.log(data);
+        });
+    }
+
+    onSubmitForgot = (e) => {
+        e.preventDefault();
+        var data = {
+            email: this.state.email
+        };
+
+        forgotUserPassword(data, (response) => {
+            if (response) {
+                if (response.statusCode === HTTP_200_OK) {
+                    this.onReset();
+                } else if (response.statusCode === HTTP_400_BAD_REQUEST) {
+                    this.setErrors(response.body);
+                } else {
+                    this.onReset();
+                }
+            } else {
+                this.onReset();
+            }
         });
     }
 
@@ -294,7 +318,7 @@ export default class Header extends Component {
                     contentLabel="Login"
                     onRequestClose={this.handleCloseLogin}>
 
-                    <form id="login" className="modal login-modal" onSubmit={this.onSubmitx} onReset={this.onReset}>
+                    <form id="login" className="modal login-modal" onSubmit={this.onSubmitLogin} onReset={this.onReset}>
                         <div className="modal-content">
                             <a href="#" className="close" onClick={this.handleCloseLogin}><i
                                 className="material-icons">close</i></a>
@@ -335,7 +359,7 @@ export default class Header extends Component {
                     contentLabel="ForgotPassword"
                     onRequestClose={this.handleCloseForgotPassword}>
 
-                    <div id="forgot-password" className="modal forgot-password-modal">
+                    <form id="forgot-password" className="modal forgot-password-modal" onSubmit={this.onSubmitForgot} onReset={this.onReset}>
                         <div className="modal-content">
                             <a href="#" className="close" onClick={this.handleCloseForgotPassword}><i
                                 className="material-icons">close</i></a>
@@ -345,7 +369,8 @@ export default class Header extends Component {
                                     <p>Fill in the required fields to log in.</p>
                                 </div>
                                 <div className="form-item">
-                                    <input type="email" name="email" placeholder="E-Mail"/>
+                                    <input type="email" name="email" placeholder="E-Mail" value={email}
+                                           onChange={this.onChange}/>
                                 </div>
                                 <div className="form-item">
                                     <button type="submit" className="btn full">Send</button>
@@ -361,7 +386,7 @@ export default class Header extends Component {
                             </div>
                             <div className="modal-img"></div>
                         </div>
-                    </div>
+                    </form>
                 </Modal>
             </header>
         )
