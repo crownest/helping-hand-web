@@ -1,12 +1,15 @@
-* { padding: 0; margin: 0; box-sizing: border-box; }
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
 @import "_custom";
 @import "_variables";
 @import "_ui";
 @import "_form";
 @import "_layout";
 @import "_typography";
-
-
 
 // Components
 @import "src/components/RightNav/_index";
@@ -15,6 +18,7 @@
 // Objects
 @import "src/objects/Header/_index";
 @import "src/objects/Footer/_index";
+@import "src/objects/Settings/_index";
 @import "src/objects/Need/_index";
 
 // Pages
