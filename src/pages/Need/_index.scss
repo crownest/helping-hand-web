@@ -1,2 +1,26 @@
-#index-page {
+#need-page {
+  .google-map {
+    display: inline-block;
+    vertical-align: top;
+    width: calc(100% - 400px) !important;
+  }
+
+  .need-menu {
+    display: inline-block;
+    vertical-align: top;
+    width: 380px;
+    padding: 20px;
+  }
+
+  label {
+    font-size: 18px;
+    color: $smooth-green;
+  }
+  input {
+    color: $smooth-gray0;
+  }
+  button {
+    height: 60px;
+    width: 100%;
+  }
 }

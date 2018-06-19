@@ -100,55 +100,41 @@ export default class NeedMenu extends Component {
     render() {
         const {redirect, title, description, address, end_date, is_fixed} = this.state
         return (
-            <form onSubmit={this.onSubmit} onReset={this.onReset}>
-                <div className="form-area">
-                    <div>
-                        <h4>Title</h4>
-                    </div>
-                    <div>
-                        <input type='text' name='title' value={title} onChange={this.onChange}/>
-                    </div>
-                    <div>
-                        <h4>Description</h4>
-                    </div>
-                    <div>
-                        <textarea name='description' value={description} onChange={this.onChange}></textarea>
-                    </div>
-                    <div>
-                        <h4>Address</h4>
-                    </div>
-                    <div className="form-item">
-                        <textarea name='address' value={address} onChange={this.onChange}></textarea>
-                    </div>
-                    <div>
-                        <h4>Ending Date [YYYY-MM-DD]</h4>
-                    </div>
-                    <div className="form-item">
-                        <input type="text" name="end_date" value={end_date} onChange={this.onChange}/>
-                    </div>
-                    <div>
-                        <h4>Fixed?</h4>
-                    </div>
-                    <div className="form-item">
-                        <input type="checkbox" name="is_fixed" onChange={this.onChange}/>
-                    </div>
-                    <div>
-                        <h4>Category</h4>
-                    </div>
-                    <div className="form-item">
-                        <div>
-                            <select>
-                                <option>Category 1</option>
-                                <option>Category 2</option>
-                                <option>Category 3</option>
-                            </select>
+            <div className="need-menu">
+                <form onSubmit={this.onSubmit} onReset={this.onReset}>
+                    <div className="form-area">
+                        <div className="form-item">
+                            <label>Title</label>
+                            <input type='text' name='title' value={title} onChange={this.onChange}/>
+                        </div>
+                        <div className="form-item">
+                            <label>Description</label>
+                            <textarea name='description' value={description} onChange={this.onChange}></textarea>
+                        </div>
+                        <div className="form-item">
+                            <label>Address</label>
+                            <textarea name='address' value={address} onChange={this.onChange}></textarea>
+                        </div>
+                        <div className="form-item">
+                            <label>Ending Date [YYYY-MM-DD]</label>
+                            <input type="text" name="end_date" value={end_date} onChange={this.onChange}/>
+                        </div>
+                        <div className="form-item">
+                            <label>Category</label>
+                            <div className="select-box">
+                                <select>
+                                    <option>Category 1</option>
+                                    <option>Category 2</option>
+                                    <option>Category 3</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div className="form-item">
+                            <button type="submit" className="btn full">Add</button>
                         </div>
                     </div>
-                    <div className="form-item">
-                        <button type="submit" className="btn full">Add</button>
-                    </div>
-                </div>
-            </form>
+                </form>
+            </div>
         );
     }
 }
