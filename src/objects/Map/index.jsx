@@ -1,8 +1,8 @@
 // Packages
-import React, {PropTypes, Component} from 'react';
+import React, {Component} from 'react';
 import GoogleMapReact from 'google-map-react';
 import MyGreatPlaceWithStick from './my_great_place_with_stick';
-
+import PropTypes from 'prop-types';
 import {K_CIRCLE_SIZE, K_STICK_SIZE} from "./my_great_place_with_hover_styles";
 
 export default class Map extends Component {
