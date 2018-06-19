@@ -18,28 +18,33 @@
     width: 100px;
     height: 100px;
     padding: 15px 10px;
-    box-shadow: 1px 2px 7px 0 rgba(102,100,100,0.2);
+    box-shadow: 1px 2px 7px 0 rgba(102, 100, 100, 0.2);
     border-radius: 50%;
     background-color: $smooth-green;
     font-size: 14px;
     line-height: 18px;
     color: #fff;
     text-align: center;
+    transition: all .4s;
     img {
       display: block;
       margin: 0 auto;
     }
-    &:hover {opacity: .7;}
   }
   .add {
     padding: 24px 10px;
-    background-color: $smooth-blue; 
+    background-color: $smooth-blue;
+    &:hover {
+      opacity: .7;
+    }
   }
   .wait {
-    background-color: $smooth-red; 
+    background-color: $smooth-red;
   }
   &.open {
-    .open-btn {background: url(/images/bg/left-btn-active-bg.png) no-repeat 0 0;}
+    .open-btn {
+      background: url(/images/bg/left-btn-active-bg.png) no-repeat 0 0;
+    }
     .check {
       top: -90px;
       left: 65px;

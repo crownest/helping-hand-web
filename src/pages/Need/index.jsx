@@ -12,8 +12,9 @@ import LeftNav from 'components/LeftNav/index';
 import Header from 'objects/Header/index';
 import Footer from 'objects/Footer/index';
 import Map from 'objects/Map/index';
+import NeedMenu from 'objects/Need/index';
 
-export default class Index extends Component {
+export default class Need extends Component {
 
     constructor(props) {
         super(props);
@@ -27,7 +28,6 @@ export default class Index extends Component {
         this.toggleRightNav = this.toggleRightNav.bind(this);
     }
 
-
     toggleRightNav() {
         this.setState({
             rightNavIsOpen: !this.state.rightNavIsOpen
@@ -38,13 +38,13 @@ export default class Index extends Component {
         const {title} = this.state;
 
         return (
-            <div id="index-page">
+            <div id="need-page">
                 <Header title={title} rightNowHandler={this.toggleRightNav}/>
                 <Map/>
                 <LeftNav/>
 
                 <RightNav isOpen={this.state.rightNavIsOpen}/>
-
+                <NeedMenu/>
                 <Footer/>
             </div>
         );
