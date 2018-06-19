@@ -39,7 +39,10 @@ export function createNeed(data, onComplete) {
     .accept("application/json")
     .send({
       title: data["title"],
-      description: data["description"]
+      description: data["description"],
+      address: data["address"],
+      end_date: data["end_date"],
+      is_fixed: data["is_fixed"]
     })
     .end(function(error, response) {
       onComplete(response);
