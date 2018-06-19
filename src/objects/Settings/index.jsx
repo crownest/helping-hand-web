@@ -9,7 +9,6 @@ import {
 
 // Services
 import {updateUser} from "../../services/userServices";
-import {setAuthInformations} from "../../services/baseServices";
 
 export default class SettingsPage extends Component {
     constructor(props) {
@@ -74,14 +73,6 @@ export default class SettingsPage extends Component {
             }
             console.log(response);
         });
-    }
-
-    componentDidMount() {
-        const data = {
-            email: "crownest@unicrow.com",
-            password: "helping"
-        }
-
     }
 
     render() {
