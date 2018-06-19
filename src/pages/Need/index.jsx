@@ -39,13 +39,14 @@ export default class Need extends Component {
 
         return (
             <div id="need-page">
-                <Header title={title} rightNowHandler={this.toggleRightNav}/>
-                <Map/>
-                <LeftNav/>
+                <Header title={title} rightNowHandler={this.toggleRightNav} />
+                <LeftNav />
+                <RightNav isOpen={this.state.rightNavIsOpen} />
+                <Map />
 
-                <RightNav isOpen={this.state.rightNavIsOpen}/>
-                <NeedMenu/>
-                <Footer/>
+                <NeedMenu />
+
+                <Footer />
             </div>
         );
     }
