@@ -5,16 +5,16 @@ import React, {Component} from 'react';
 import {language} from '../../constants/languageConstants';
 
 // Components
-import RightNav from 'components/RightNav/index';
-import LeftNav from 'components/LeftNav/index';
+import RightNav from '../../components/RightNav/index';
+import LeftNav from '../../components/LeftNav/index';
 
 // Objects
-import Header from 'objects/Header/index';
-import Footer from 'objects/Footer/index';
-import Map from 'objects/Map/index';
+import Header from '../../objects/Header/index';
+import Footer from '../../objects/Footer/index';
+import Map from '../../objects/Map/index';
+import SettingsPage from '../../objects/Settings/index';
 
-
-export default class Index extends Component {
+export default class Settings extends Component {
 
     constructor(props) {
         super(props);
@@ -28,7 +28,6 @@ export default class Index extends Component {
         this.toggleRightNav = this.toggleRightNav.bind(this);
     }
 
-
     toggleRightNav() {
         this.setState({
             rightNavIsOpen: !this.state.rightNavIsOpen
@@ -39,14 +38,10 @@ export default class Index extends Component {
         const {title} = this.state;
 
         return (
-            <div id="index-page">
-                <Header title={title} rightNowHandler={this.toggleRightNav}/>
-                <Map/>
-                <LeftNav/>
-
-                <RightNav isOpen={this.state.rightNavIsOpen}/>
-
-                <Footer/>
+            <div id="settings-page">
+                <Header title={title} rightNowHandler={this.toggleRightNav} />
+                <SettingsPage />
+                <Footer />
             </div>
         );
     }
