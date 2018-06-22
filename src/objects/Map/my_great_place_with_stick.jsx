@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import shouldPureComponentUpdate from 'react-pure-render';
 import PropTypes from 'prop-types';
 
 import {
@@ -16,14 +15,7 @@ export default class MyGreatPlaceWithStick extends Component {
         text: PropTypes.string,
         zIndex: PropTypes.number
     };
-
     static defaultProps = {};
-
-    shouldComponentUpdate = shouldPureComponentUpdate;
-
-    constructor(props) {
-        super(props);
-    }
 
     render() {
         const {text, zIndex} = this.props;

@@ -2,22 +2,21 @@
 import React, {Component} from 'react';
 
 // Components
-import RightNav from 'components/RightNav/index';
-import LeftNav from 'components/LeftNav/index';
+import RightNav from '../../components/RightNav/index';
+import LeftNav from '../../components/LeftNav/index';
 
 // Objects
-import Header from 'objects/Header/index';
-import Footer from 'objects/Footer/index';
-import Map from 'objects/Map/index';
-import NeedMenu from 'objects/Need/index';
+import Header from '../../objects/Header/index';
+import Footer from '../../objects/Footer/index';
+import Map from '../../objects/Map/index';
+import SupportMenu from '../../objects/Support/index';
 
-
-export default class Need extends Component {
+export default class Support extends Component {
 
     constructor(props) {
         super(props);
 
-        document.title = "Needs | Helping Hand";
+        document.title = "Support | Helping Hand";
 
         this.state = {
             "title": "Helping Hand",
@@ -36,12 +35,12 @@ export default class Need extends Component {
         const {title} = this.state;
 
         return (
-            <div id="need-page">
+            <div id="support-page">
                 <Header title={title} rightNowHandler={this.toggleRightNav}/>
                 <LeftNav/>
-                <RightNav isOpen={this.state.rightNavIsOpen}/>
                 <Map/>
-                <NeedMenu/>
+                <SupportMenu/>
+                <RightNav/>
                 <Footer/>
             </div>
         );
