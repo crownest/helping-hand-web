@@ -17,7 +17,7 @@ input[type="email"], input[type="text"], input[type="password"], textarea {
 textarea {
   resize: none;
   padding: 0;
-  margin: 0; 
+  margin: 0;
   min-height: 60px;
 }
 
@@ -36,7 +36,9 @@ button, .btn {
   font-weight: 600;
   font-size: 14px;
   color: #fff;
-  &.full {width: 100%;}
+  &.full {
+    width: 100%;
+  }
 }
 
 label {
@@ -54,19 +56,24 @@ label {
   color: $smooth-gray0;
 }
 
-
 .form-item {
   position: relative;
   @include clearfix();
   margin-bottom: 15px;
-  &:last-child {margin-bottom: 0;}
+  &:last-child {
+    margin-bottom: 0;
+  }
+  .error-message {
+    color: $red;
+    font-size: 14px;
+    line-height: 28px;
+  }
 }
-
 
 .select-box {
   position: relative;
   width: 100%;
-  border-bottom: 1px solid $smooth-green;  
+  border-bottom: 1px solid $smooth-green;
   &:after {
     content: "keyboard_arrow_down";
     position: absolute;
@@ -91,17 +98,24 @@ label {
     border: none;
     outline: none;
     cursor: pointer;
-    &:invalid { color: $smooth-gray; }
-    &::-ms-expand {display: none;}
-    &:focus::-ms-value {background-color: transparent;}
+    &:invalid {
+      color: $smooth-gray;
+    }
+    &::-ms-expand {
+      display: none;
+    }
+    &:focus::-ms-value {
+      background-color: transparent;
+    }
   }
 }
 
 .checkbox {
   position: relative;
   display: inline-block;
-  vertical-align: middle;     
+  vertical-align: middle;
 }
+
 .checkbox input[type="checkbox"] {
   position: absolute;
   top: 0;
@@ -114,6 +128,7 @@ label {
   opacity: 0;
   cursor: pointer;
 }
+
 .checkbox input[type="checkbox"] + label {
   position: relative;
   z-index: 3;
@@ -126,6 +141,7 @@ label {
   cursor: pointer;
   color: $smooth-gray0;
 }
+
 .checkbox input[type="checkbox"] + label:after {
   content: "";
   position: absolute;
@@ -136,7 +152,8 @@ label {
   border: 1px solid $light-gray;
   border-radius: 3px;
 }
-.checkbox input[type="checkbox"]+ label:before {
+
+.checkbox input[type="checkbox"] + label:before {
   display: none;
   content: "check";
   position: absolute;
@@ -148,6 +165,7 @@ label {
   font-feature-settings: 'liga';
   color: $smooth-green;
 }
+
 .checkbox input[type="checkbox"]:checked + label:before {
   display: block;
 }

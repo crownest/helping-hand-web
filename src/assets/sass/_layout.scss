@@ -1,18 +1,6 @@
-html, body {
-  //  height: 100%;
+body {
+  padding-top: $header-h;
 }
-
-/*#root {
-  position: relative;
-  min-height: 100%;
-  margin-bottom: -$footer-h;
-  &:after {
-    content:'';
-    display: block;
-    height: $footer-h; 
-  } 
-}
-*/
 
 .container {
   @include clearfix();

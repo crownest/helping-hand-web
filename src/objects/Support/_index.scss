@@ -1,0 +1,32 @@
+.support-menu {
+  p {
+    font-size: 14px;
+  }
+  table {
+    width: 100%;
+  }
+  th {
+    font-size: 14px;
+    color: #48D2A0;
+    text-align: left;
+    padding: 2px 5px;
+  }
+  td {
+    padding: 2px 5px;
+    font-size: 14px;
+    vertical-align: middle;
+    text-align: left;
+    &:first-child {
+      width: 80px;
+    }
+    input {
+      max-width: 80%;
+      height: 25px;
+    }
+  }
+  span {
+    display: block;
+    line-height: 35px;
+    font-size: 14px;
+  }
+}

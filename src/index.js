@@ -10,6 +10,6 @@ import './assets/sass/main.css';
 
 
 ReactDOM.render(
-  <AppRouter />,
-  document.getElementById('root')
+    <AppRouter/>,
+    document.getElementById('root')
 );
