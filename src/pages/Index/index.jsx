@@ -1,9 +1,6 @@
 // Packages
 import React, {Component} from 'react';
 
-// Constants
-import {language} from '../../constants/languageConstants';
-
 // Components
 import RightNav from 'components/RightNav/index';
 import LeftNav from 'components/LeftNav/index';
@@ -19,7 +16,7 @@ export default class Index extends Component {
     constructor(props) {
         super(props);
 
-        document.title = language.trans("Index") + " | Helping Hand";
+        document.title = " Index | Helping Hand";
 
         this.state = {
             "title": "Helping Hand",
@@ -40,7 +37,8 @@ export default class Index extends Component {
 
         return (
             <div id="index-page">
-                <Header title={title} rightNowHandler={this.toggleRightNav}/>
+
+                <Header title={title} rightNowHandler={this.toggleRightNav} {...this.props}/>
                 <Map/>
                 <LeftNav/>
 
