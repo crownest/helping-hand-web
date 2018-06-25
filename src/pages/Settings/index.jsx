@@ -1,6 +1,10 @@
 // Packages
 import React, {Component} from 'react';
 
+// Components
+import RightNav from 'components/RightNav/index';
+import LeftNav from 'components/LeftNav/index';
+
 // Objects
 import Header from '../../objects/Header/index';
 import Footer from '../../objects/Footer/index';
@@ -33,6 +37,8 @@ export default class Settings extends Component {
         return (
             <div id="settings-page">
                 <Header title={title} rightNowHandler={this.toggleRightNav}/>
+                <LeftNav/>
+                <RightNav isOpen={this.state.rightNavIsOpen}/>
                 <SettingsPage/>
                 <Footer/>
             </div>

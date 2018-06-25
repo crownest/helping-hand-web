@@ -35,9 +35,7 @@ class NeedMenu extends Component {
         this.onChange = this.onChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
         this.setErrors = this.setErrors.bind(this);
-        this.setRedirect = this.setRedirect.bind(this);
         this.onReset = this.onReset.bind(this);
-        this.setCategories = this.setCategories.bind(this);
     }
 
     componentWillMount() {
@@ -45,17 +43,13 @@ class NeedMenu extends Component {
             listCategory((response) => {
                 if (response) {
                     if (response.statusCode === HTTP_200_OK) {
-                        this.setCategories(response.body);
+                        this.setState({
+                            categories: response.body
+                        });
                     }
                 }
             });
         }
-    }
-
-    setCategories = (categories) => {
-        this.setState({
-            categories: categories
-        });
     };
 
     onChange = (e) => {
@@ -73,12 +67,6 @@ class NeedMenu extends Component {
         if (errors.non_field_errors) {
             this.props.alert.error(errors.non_field_errors.join("<br>"));
         }
-    };
-
-    setRedirect = (id) => {
-        this.setState({
-            redirect: true,
-        });
     };
 
     onReset = (e) => {
@@ -108,15 +96,14 @@ class NeedMenu extends Component {
             lat: this.state.lat,
             long: this.state.long,
             needs: this.state.needs,
-            categories: this.state.category
-        }
+            categories: this.state.categories
+        };
 
         createNeed(data, (response) => {
             if (response) {
                 if (response.statusCode === HTTP_201_CREATED) {
                     this.onReset();
                     this.props.alert.success('Your need was created successfully!');
-                    window.location.reload();
                 } else if (response.statusCode === HTTP_400_BAD_REQUEST) {
                     this.setErrors(response.body);
                 } else {
@@ -169,7 +156,7 @@ class NeedMenu extends Component {
                                     {this.state.categories.map(category =>
                                         <option key={category.id}
                                                 value={category.id}
-                                                >{category.name}
+                                        >{category.name}
                                         </option>
                                     )}
                                 </select>

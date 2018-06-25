@@ -10,7 +10,7 @@ import {
 export default class MyGreatPlaceWithStick extends Component {
     static propTypes = {
         // GoogleMap pass $hover props to hovered components
-        // to detect hover it uses internal mechanism, explained in x_distance_hover example
+        // to detect hover it uses internal mechanism
         $hover: PropTypes.bool,
         text: PropTypes.string,
         zIndex: PropTypes.number

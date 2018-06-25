@@ -18,27 +18,21 @@ export default class RightNav extends Component {
         this.state = {
             needs: [],
         };
-
-        this.setNeeds = this.setNeeds.bind(this);
-    }
+    };
 
     componentWillMount() {
         if (isAuthentication()) {
             listNeed((response) => {
                 if (response) {
                     if (response.statusCode === HTTP_200_OK) {
-                        this.setNeeds(response.body);
+                        this.setState({
+                            needs: response.body
+                        });
                     }
                 }
             });
         }
-    }
-
-    setNeeds = (needs) => {
-        this.setState({
-            needs: needs
-        });
-    }
+    };
 
     render() {
         const isRightActiveClass = this.props.isOpen ? 'open' : '';
@@ -51,7 +45,7 @@ export default class RightNav extends Component {
                 <ul>
                     {this.state.needs.map(need =>
                         <li key={need.id}>
-                            <Link to="#">
+                            <Link to={"/support/" + need.id}>
                                 <div className="img"><img src="/images/temp/img01.jpg" alt=""/></div>
                                 <div className="text">
                                     <h6>

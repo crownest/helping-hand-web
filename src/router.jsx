@@ -30,7 +30,7 @@ const AppRouter = () => (
                 <Route exact path="/need" component={Need}/>
                 <Route exact path="/logout" component={Logout}/>
                 <Route exact path="/settings" component={Settings}/>
-                <Route exact path="/support" component={Support}/>
+                <Route exact path="/support/:id" component={Support}/>
             </Switch>
         </Router>
     </AlertProvider>
