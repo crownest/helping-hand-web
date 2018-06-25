@@ -1,0 +1,25 @@
+#needitem-page {
+  .google-map {
+    display: inline-block;
+    vertical-align: top;
+    width: calc(100% - 400px) !important;
+  }
+
+  .button.btn.full {
+    width: 10px;
+  }
+
+  .needitem-menu {
+    display: inline-block;
+    vertical-align: top;
+    width: 380px;
+    padding: 20px;
+    li {
+      display: inline-block;
+      vertical-align: top;
+      width: calc(100% / 4);
+      margin: 10px;
+    }
+
+  }
+}
