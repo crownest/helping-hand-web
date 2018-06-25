@@ -24,9 +24,6 @@ class SupportMenu extends Component {
             errors: {}
         };
 
-        this.setNeedItems = this.setNeedItems.bind(this);
-        this.setUser = this.setUser.bind(this);
-
         this.onChange = this.onChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
         this.setErrors = this.setErrors.bind(this);
@@ -35,10 +32,12 @@ class SupportMenu extends Component {
 
     componentWillMount() {
         if (isAuthentication()) {
-            listNeedItem((response) => {
+            listNeedItem({need: this.props.needId}, (response) => {
                 if (response) {
                     if (response.statusCode === HTTP_200_OK) {
-                        this.setNeedItems(response.body);
+                        this.setState({
+                            needitems: response.body
+                        });
                     }
                 }
             });
@@ -47,23 +46,13 @@ class SupportMenu extends Component {
         retrieveUser((response) => {
             if (response) {
                 if (response.statusCode === HTTP_200_OK) {
-                    this.setUser(response.body);
+                    this.setState({
+                        user: response.body
+                    });
                 }
             }
-        })
+        });
     }
-
-    setNeedItems = (needitems) => {
-        this.setState({
-            needitems: needitems
-        });
-    };
-
-    setUser = (user) => {
-        this.setState({
-            user: user
-        });
-    };
 
     onChange = (e) => {
         const state = this.state;
@@ -170,10 +159,6 @@ class SupportMenu extends Component {
                                         </tr>
                                     )}
                                 </table>
-                            </div>
-                            <div className="form-item">
-                                <label>Support date</label>
-                                <input type="text" name="end_date"/>
                             </div>
                             <div className="form-item">
                                 <button type="submit" className="btn full">Support</button>

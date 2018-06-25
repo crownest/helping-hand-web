@@ -18,27 +18,21 @@ export default class Map extends Component {
         // Initiate the default state.
         this.state = {
             needs: [],
-        }
-
-        this.setNeeds = this.setNeeds.bind(this);
-    }
+        };
+    };
 
     componentWillMount() {
         if (isAuthentication()) {
             listNeed((response) => {
                 if (response) {
                     if (response.statusCode === HTTP_200_OK) {
-                        this.setNeeds(response.body);
+                        this.setState({
+                            needs: response.body
+                        });
                     }
                 }
             });
         }
-    }
-
-    setNeeds = (needs) => {
-        this.setState({
-            needs: needs
-        });
     };
 
 // Set the default properties of the map marker.
@@ -71,9 +65,8 @@ export default class Map extends Component {
                     {this.state.needs.map(need =>
                         <MyGreatPlaceWithStick key={need.id} lat={need.lat} lng={need.long} zIndex={need.id.length}/>
                     )}
-
                 </GoogleMapReact>
             </div>
         )
-    }
+    };
 }

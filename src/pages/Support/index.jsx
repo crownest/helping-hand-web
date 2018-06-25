@@ -38,9 +38,9 @@ export default class Support extends Component {
             <div id="support-page">
                 <Header title={title} rightNowHandler={this.toggleRightNav}/>
                 <LeftNav/>
+                <RightNav isOpen={this.state.rightNavIsOpen}/>
                 <Map/>
-                <SupportMenu/>
-                <RightNav/>
+                <SupportMenu needId={this.props.match.params.id}/>
                 <Footer/>
             </div>
         );

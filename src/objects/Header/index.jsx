@@ -54,8 +54,6 @@ class Header extends Component {
 
         this.onSubmitLogin = this.onSubmitLogin.bind(this);
         this.onSubmitForgot = this.onSubmitForgot.bind(this);
-
-        this.setUser = this.setUser.bind(this);
     }
 
     componentDidMount() {
@@ -203,18 +201,14 @@ class Header extends Component {
             retrieveUser((response) => {
                 if (response) {
                     if (response.statusCode === HTTP_200_OK) {
-                        this.setUser(response.body);
+                        this.setState({
+                            user: response.body
+                        });
                     }
                 }
                 this.setState({isLoading: false});
             });
         }
-    };
-
-    setUser = (user) => {
-        this.setState({
-            user: user
-        });
     };
 
     render() {
@@ -270,7 +264,7 @@ class Header extends Component {
                               onReset={this.onReset}>
                             <div className="modal-content">
                                 <Link to="#" className="close"
-                                   onClick={this.handleCloseRegister}>
+                                      onClick={this.handleCloseRegister}>
                                     <i className="material-icons">close</i></Link>
                                 <div className="modal-img"/>
                                 <div className="form-area">
@@ -368,7 +362,7 @@ class Header extends Component {
                                                value={password}
                                                onChange={this.onChange}/>
                                         <Link to="#" className="forgot-password"
-                                           onClick={this.handleOpenForgotPassword}>
+                                              onClick={this.handleOpenForgotPassword}>
                                             Forgot Password</Link>
                                     </div>
                                     <div className="form-item">
@@ -377,10 +371,10 @@ class Header extends Component {
                                     <div className="form-item">
                                         <p className="form-info">If you're not a member yet, please
                                             <Link to="#"
-                                               onClick={(event) => {
-                                                   this.handleCloseLogin();
-                                                   this.handleOpenRegister();
-                                               }}>Register</Link></p>
+                                                  onClick={(event) => {
+                                                      this.handleCloseLogin();
+                                                      this.handleOpenRegister();
+                                                  }}>Register</Link></p>
                                     </div>
                                 </div>
                                 <div className="modal-img"/>
@@ -400,7 +394,7 @@ class Header extends Component {
                               onReset={this.onReset}>
                             <div className="modal-content">
                                 <Link to="#" className="close"
-                                   onClick={this.handleCloseForgotPassword}>
+                                      onClick={this.handleCloseForgotPassword}>
                                     <i className="material-icons">close</i></Link>
                                 <div className="form-area">
                                     <div className="form-title">
@@ -423,10 +417,10 @@ class Header extends Component {
                                     <div className="form-item">
                                         <p className="form-info">If you're not a member yet, please
                                             <Link to="#"
-                                               onClick={(event) => {
-                                                   this.handleCloseForgotPassword();
-                                                   this.handleOpenRegister();
-                                               }}>Register</Link>
+                                                  onClick={(event) => {
+                                                      this.handleCloseForgotPassword();
+                                                      this.handleOpenRegister();
+                                                  }}>Register</Link>
                                         </p>
                                     </div>
                                 </div>
@@ -462,8 +456,6 @@ class Header extends Component {
                                 <span className="username">Hello, {user.first_name}! <i
                                     className="material-icons">arrow_drop_down</i></span>
                                 <ul>
-                                    <li><Link to="/support">Supports</Link></li>
-                                    <li><Link to="/need">Needs</Link></li>
                                     <li><Link to="/settings">Settings</Link></li>
                                     <li><Link to="/logout">Logout</Link></li>
                                 </ul>
