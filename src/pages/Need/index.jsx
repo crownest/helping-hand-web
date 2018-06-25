@@ -41,7 +41,7 @@ export default class Need extends Component {
                 <LeftNav/>
                 <RightNav isOpen={this.state.rightNavIsOpen}/>
                 <Map/>
-                <NeedMenu/>
+                <NeedMenu {...this.props} />
                 <Footer/>
             </div>
         );

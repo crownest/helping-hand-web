@@ -104,6 +104,7 @@ class NeedMenu extends Component {
                 if (response.statusCode === HTTP_201_CREATED) {
                     this.onReset();
                     this.props.alert.success('Your need was created successfully!');
+                    this.props.history.push(`/need/${response.body.id}`);
                 } else if (response.statusCode === HTTP_400_BAD_REQUEST) {
                     this.setErrors(response.body);
                 } else {

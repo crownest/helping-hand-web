@@ -11,6 +11,7 @@ import AlertTemplate from 'react-alert-template-basic';
 // Pages
 import Index from './pages/Index/index';
 import Need from './pages/Need/index';
+import NeedItem from './pages/NeedItem/index';
 import Logout from './pages/Logout/index';
 import Settings from './pages/Settings/index'
 import Support from './pages/Support/index'
@@ -28,13 +29,13 @@ const AppRouter = () => (
             <Switch>
                 <Route exact path="/" component={Index}/>
                 <Route exact path="/need" component={Need}/>
+                <Route exact path="/need/:id" component={NeedItem}/>
                 <Route exact path="/logout" component={Logout}/>
                 <Route exact path="/settings" component={Settings}/>
                 <Route exact path="/support/:id" component={Support}/>
             </Switch>
         </Router>
     </AlertProvider>
-)
-
+);
 
 export default AppRouter;
