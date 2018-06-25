@@ -1,0 +1,95 @@
+.right-menu {
+  position: fixed;
+  top: $header-h;
+  right: -410px;
+  z-index: 10;
+  width: 410px;
+  padding: 10px 40px;
+  height: calc(100% - #{$header-h});
+  background-color: $smooth-gray;
+  transition: right .4s;
+  .search-area {
+    position: relative;
+    margin-bottom: 15px;
+    input {
+      height: 35px;
+      border: 1px solid #DADADA;
+      border-radius: 3px;
+      background-color: #FFFFFF;
+      padding: 0 10px;
+      font-size: 14px;
+    }
+    button {
+      position: absolute;
+      top: 4px;
+      right: 3px;
+      min-width: 30px;
+      padding: 0;
+      height: 30px;
+      background-color: transparent;
+      color: $smooth-gray0;
+      i {
+        font-size: 20px;
+      }
+    }
+  }
+  ul {
+    overflow: auto;
+    height: calc(100% - 130px);
+    margin-bottom: 20px;
+  }
+  li {
+    position: relative;
+    margin-bottom: 20px;
+    &:last-child {
+      margin-bottom: 0;
+    }
+    a {
+      @include clearfix();
+      display: block;
+    }
+    .img {
+      float: left;
+      overflow: hidden;
+      width: 72px;
+      height: 72px;
+      border-radius: 2px;
+      border: 4px solid $light-gray;
+      img {
+        max-width: 100%;
+        border-radius: 2px;
+        border: 1px solid #fff;
+      }
+    }
+    .text {
+      float: left;
+      width: calc(100% - 82px);
+      margin: 0 0 0 10px;
+    }
+    h6 {
+      img {
+        display: inline-block;
+        vertical-align: middle;
+      }
+      span {
+        display: inline-block;
+        vertical-align: middle;
+        margin-left: 7px;
+        font-weight: 600;
+        font-size: 18px;
+        color: $pastel-gray;
+      }
+    }
+    p {
+      font-size: 13px;
+      color: $gray;
+    }
+    .count {
+      font-size: 11px;
+      color: $smooth-green;
+    }
+  }
+  &.open {
+    right: 0;
+  }
+}
