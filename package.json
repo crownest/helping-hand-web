@@ -12,11 +12,14 @@
     "react-alert": "^4.0.4",
     "react-alert-template-basic": "^1.0.0",
     "react-dom": "^16.3.2",
+    "react-modal": "^3.4.5",
+    "react-pure-render": "^1.0.2",
     "react-pure-render-utils": "^0.9.5",
     "react-retina-image": "^2.0.5",
     "react-router-dom": "^4.2.2",
     "react-scripts": "1.1.4",
     "react-text-truncate": "^0.13.1",
+    "react-transition-group": "^2.3.1",
     "superagent": "^3.8.3"
   },
   "scripts": {
