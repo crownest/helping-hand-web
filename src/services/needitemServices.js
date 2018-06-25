@@ -6,11 +6,12 @@ import {
 } from "./baseServices";
 
 
-export function listNeedItem(onComplete) {
+export function listNeedItem(params, onComplete) {
     var auth_informations = getAuthInformations();
-
+    console.log(params);
     return request
         .get(api_needitems_url)
+        .query(params)
         .set("Authorization", "TOKEN " + auth_informations.auth_token)
         .type("application/json")
         .accept("application/json")
@@ -45,11 +46,11 @@ export function createNeedItem(data, onComplete) {
         });
 }
 
-export function retrieveNeedItem(needitem_id, onComplete) {
+export function retrieveNeedItem(need_id, onComplete) {
     var auth_informations = getAuthInformations();
 
     return request
-        .get(api_needitems_url + needitem_id + '/')
+        .get(api_needitems_url + need_id + '/')
         .set("Authorization", "TOKEN " + auth_informations.auth_token)
         .type("application/json")
         .accept("application/json")

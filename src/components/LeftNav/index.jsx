@@ -5,7 +5,6 @@ import {Link} from 'react-router-dom';
 // Services
 import {listNeed} from "../../services/needServices";
 import {HTTP_200_OK} from "../../constants/serviceConstants";
-import {isAuthentication} from "../../services/baseServices";
 
 export default class LeftNav extends Component {
     constructor() {
@@ -15,38 +14,31 @@ export default class LeftNav extends Component {
             isMenuOpen: false,
             needs: []
         };
-
-        this.setNeeds = this.setNeeds.bind(this);
     }
 
     componentWillMount() {
-        if (isAuthentication()) {
             listNeed((response) => {
                 if (response) {
                     if (response.statusCode === HTTP_200_OK) {
-                        this.setNeeds(response.body);
+                        this.setState({
+                            needs: response.body
+                        });
                     }
                 }
             });
-        }
     }
-
-    setNeeds = (needs) => {
-        this.setState({
-            needs: needs
-        });
-    }
-
 
     render() {
+        let isFixedCount = 0;
         const isActiveClass = this.state.isMenuOpen ? 'open' : '';
         const {needs} = this.state;
-        let isFixedCount = 0;
+
         needs.forEach((item) => {
             if (item.is_fixed) {
                 isFixedCount += 1;
             }
         });
+
         return (
             <div className={"left-menu " + isActiveClass}>
                 <Link to="#" className="open-btn"

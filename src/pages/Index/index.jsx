@@ -41,9 +41,7 @@ export default class Index extends Component {
                 <Header title={title} rightNowHandler={this.toggleRightNav} {...this.props}/>
                 <Map/>
                 <LeftNav/>
-
                 <RightNav isOpen={this.state.rightNavIsOpen}/>
-
                 <Footer/>
             </div>
         );
