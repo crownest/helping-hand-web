@@ -62,6 +62,7 @@ class NeedMenu extends Component {
         const state = this.state;
         state[e.target.name] = e.target.value;
         this.setState(state);
+        console.log(e.target.name, e.target.value);
     };
 
     setErrors = (errors) => {
@@ -107,6 +108,7 @@ class NeedMenu extends Component {
             lat: this.state.lat,
             long: this.state.long,
             needs: this.state.needs,
+            categories: this.state.category
         }
 
         createNeed(data, (response) => {
@@ -163,11 +165,11 @@ class NeedMenu extends Component {
                         <div className="form-item">
                             <label>Category</label>
                             <div className="select-box">
-                                <select>
+                                <select name="category" onChange={this.onChange}>
                                     {this.state.categories.map(category =>
-                                        <option key={category.id} name="category"
+                                        <option key={category.id}
                                                 value={category.id}
-                                                onChange={this.onChange}>{category.name}
+                                                >{category.name}
                                         </option>
                                     )}
                                 </select>

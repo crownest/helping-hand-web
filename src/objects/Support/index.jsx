@@ -21,11 +21,6 @@ class SupportMenu extends Component {
             user: {},
             needitems: [],
 
-            // To update the Need Items
-            name: props.name,
-            remaining: props.remaining,
-            is_fixed: props.is_fixed,
-            need: props.need,
             errors: {}
         };
 
@@ -34,7 +29,6 @@ class SupportMenu extends Component {
 
         this.onChange = this.onChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
-        this.setData = this.setData.bind(this);
         this.setErrors = this.setErrors.bind(this);
         this.onReset = this.onReset.bind(this);
     }
@@ -72,18 +66,14 @@ class SupportMenu extends Component {
     };
 
     onChange = (e) => {
-        const state = this.state
-        state[e.target.name] = e.target.value;
+        const state = this.state;
+        for (let i = 0; i < state.needitems.length; i++) {
+            if (state.needitems[i].id === parseInt(e.target.name.split('_')[1])) {
+                state.needitems[i].new_remaining = state.needitems[i].remaining - e.target.value;
+                break;
+            }
+        }
         this.setState(state);
-    };
-
-    setData = (data) => {
-        this.setState({
-            name: data.name,
-            remaining: data.remaining,
-            is_fixed: data.is_fixed,
-            need: data.need
-        });
     };
 
     setErrors = (errors) => {
@@ -108,30 +98,38 @@ class SupportMenu extends Component {
 
     onSubmit = (e) => {
         e.preventDefault();
-        let data = {
-            name: this.state.name,
-            remaining: this.state.remaining,
-            is_fixed: this.state.is_fixed,
-            need: this.state.need
-        };
 
-        updateNeedItem(this.props.id, data, (response) => {
-            if (response) {
-                if (response.statusCode === HTTP_200_OK) {
-                    this.onReset();
-                    this.setData(response.body);
-                    this.props.alert.success('Successful!');
-                } else if (response.statusCode === HTTP_400_BAD_REQUEST) {
-                    this.setErrors(response.body);
-                } else {
-                    this.onReset();
-                    this.props.alert.error('An error has occured and try again later.');
-                }
-            } else {
-                this.onReset();
-                this.props.alert.error('An error has occured and try again later.');
+
+        this.state.needitems.forEach((item) => {
+            if (item.new_remaining && item.new_remaining != item.remaining) {
+                let data = {
+                    name: item.name,
+                    remaining: item.new_remaining,
+                    is_fixed: item.is_fixed,
+                    need: item.need
+                };
+
+                updateNeedItem(item.id, data, (response) => {
+                    if (response) {
+                        if (response.statusCode === HTTP_200_OK) {
+                            this.onReset();
+                            this.props.alert.success('Successful!');
+                            setTimeout(window.location.reload(), 5000);
+                        } else if (response.statusCode === HTTP_400_BAD_REQUEST) {
+                            this.setErrors(response.body);
+                        } else {
+                            this.onReset();
+                            this.props.alert.error('An error has occured and try again later.');
+                        }
+                    } else {
+                        this.onReset();
+                        this.props.alert.error('An error has occured and try again later.');
+                    }
+                });
             }
-        });
+        })
+
+
     };
 
     render() {
@@ -159,9 +157,12 @@ class SupportMenu extends Component {
                                     </tr>
                                     {this.state.needitems.map(needitem =>
                                         <tr key={needitem.id}>
-                                            <td><input type="text"
+                                            <td>
+                                                <input type="text"
+                                                       name={"remaining_" + needitem.id}
                                                        value={remaining}
-                                                       onChange={this.onChange}/></td>
+                                                       onChange={this.onChange}/>
+                                            </td>
                                             <td>
                                                 <span>{needitem.name}</span>
                                             </td>
