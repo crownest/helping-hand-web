@@ -1,22 +1,29 @@
-* {padding: 0; margin:0; box-sizing: border-box;}
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
 
-
-// General
 @import "_custom";
 @import "_variables";
-@import "_typography";
-@import "_form";
 @import "_ui";
+@import "_form";
 @import "_layout";
-
-
-// Components
-@import "src/components/Logo/_index";
-
+@import "_typography";
 
 // Components
+@import "src/components/RightNav/_index";
+@import "src/components/LeftNav/_index";
+
+// Objects
 @import "src/objects/Header/_index";
-
+@import "src/objects/Footer/_index";
+@import "src/objects/Settings/_index";
+@import "src/objects/Need/_index";
+@import "src/objects/Support/_index";
+@import "src/objects/NeedItem/_index";
 
 // Pages
 @import "src/pages/Index/_index";
+@import "src/pages/Need/_index";
+@import "src/pages/Support/_index";

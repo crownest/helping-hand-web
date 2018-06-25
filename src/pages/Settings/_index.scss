@@ -1,0 +1,28 @@
+.account-settings {
+  position: relative;
+  margin: 0 auto;
+  max-width: 360px;
+  h3 {
+    margin: 30px 0;
+    font-weight: 600;
+    font-size: 20px;
+    text-align: center;
+    color: $smooth-green;
+    span {
+      display: inline-block;
+      padding: 0 35px 10px;
+      border-bottom: 1px solid $smooth-green;
+    }
+  }
+  label {
+    font-size: 18px;
+    color: $smooth-green;
+  }
+  input {
+    color: $smooth-gray0;
+  }
+  button {
+    margin-top: 20px;
+    height: 60px;
+  }
+}

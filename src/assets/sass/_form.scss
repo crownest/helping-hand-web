@@ -1,0 +1,171 @@
+input[type="email"], input[type="text"], input[type="password"], textarea {
+  width: 100%;
+  height: 35px;
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid $smooth-green;
+  font: 16px $source-sans;
+  color: $black;
+  outline: none;
+  -webkit-font-smoothing: antialiased;
+  border-radius: 0;
+  &::placeholder {
+    color: $gray;
+  }
+}
+
+textarea {
+  resize: none;
+  padding: 0;
+  margin: 0;
+  min-height: 60px;
+}
+
+button, .btn {
+  display: inline-block;
+  min-width: 150px;
+  border: 0;
+  box-shadow: none;
+  padding: 11px 10px;
+  -webkit-font-smoothing: antialiased;
+  outline: none;
+  cursor: pointer;
+  border-radius: 2px;
+  background-color: $smooth-green;
+  text-align: center;
+  font-weight: 600;
+  font-size: 14px;
+  color: #fff;
+  &.full {
+    width: 100%;
+  }
+}
+
+label {
+  display: block;
+  margin: 0 0 5px 0;
+  font: 600 12px $source-sans;
+  color: $gray;
+}
+
+.forgot-password {
+  float: right;
+  margin: 3px 0 5px;
+  font-weight: 400;
+  font-size: 12px;
+  color: $smooth-gray0;
+}
+
+.form-item {
+  position: relative;
+  @include clearfix();
+  margin-bottom: 15px;
+  &:last-child {
+    margin-bottom: 0;
+  }
+  .error-message {
+    color: $red;
+    font-size: 14px;
+    line-height: 28px;
+  }
+}
+
+.select-box {
+  position: relative;
+  width: 100%;
+  border-bottom: 1px solid $smooth-green;
+  &:after {
+    content: "keyboard_arrow_down";
+    position: absolute;
+    top: 50%;
+    right: -2px;
+    z-index: 1;
+    margin-top: 2px;
+    transform: translateY(-50%);
+    cursor: pointer;
+    font: 20px "Material Icons";
+    font-feature-settings: 'liga';
+    color: $smooth-green;
+  }
+  select {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    font: 16px/34px $source-sans;
+    color: $gray;
+    @include appearance(none);
+    background-color: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    &:invalid {
+      color: $smooth-gray;
+    }
+    &::-ms-expand {
+      display: none;
+    }
+    &:focus::-ms-value {
+      background-color: transparent;
+    }
+  }
+}
+
+.checkbox {
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.checkbox input[type="checkbox"] {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 5;
+  width: 12px;
+  height: 12px;
+  margin: 0;
+  padding: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.checkbox input[type="checkbox"] + label {
+  position: relative;
+  z-index: 3;
+  margin: 0;
+  display: inline-block;
+  padding-left: 20px;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 12px;
+  cursor: pointer;
+  color: $smooth-gray0;
+}
+
+.checkbox input[type="checkbox"] + label:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 12px;
+  height: 12px;
+  border: 1px solid $light-gray;
+  border-radius: 3px;
+}
+
+.checkbox input[type="checkbox"] + label:before {
+  display: none;
+  content: "check";
+  position: absolute;
+  top: 0;
+  left: 0px;
+  z-index: 1;
+  cursor: pointer;
+  font: 14px "Material Icons";
+  font-feature-settings: 'liga';
+  color: $smooth-green;
+}
+
+.checkbox input[type="checkbox"]:checked + label:before {
+  display: block;
+}

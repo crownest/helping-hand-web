@@ -1,0 +1,158 @@
+.hide {
+  display: none !important;
+}
+
+.block {
+  display: block !important;
+}
+
+.inline-block {
+  display: inline-block !important;
+}
+
+.modal {
+
+  .modal-content {
+    overflow: hidden;
+    position: absolute;
+    top: 46%;
+    left: 50%;
+    max-width: 720px;
+    width: 100%;
+    transform: translate(-50%, -50%);
+    border-radius: 6px;
+    background-color: #FFFFFF;
+    box-shadow: 0 3px 9px 0 rgba(144, 144, 144, 0.5);
+  }
+  .close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 10;
+    color: $smooth-green;
+    font-size: 24px;
+    &:hover {
+      color: $gray;
+    }
+  }
+  .modal-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 330px;
+    height: 100%;
+    background: url(/images/bg/login-bg.png) no-repeat center center;
+    background-size: cover;
+  }
+  .form-area {
+    width: calc(100% - 330px);
+    margin-left: 330px;
+    padding: 30px 40px 40px;
+    .form-title {
+      margin-bottom: 15px;
+      h4 {
+        margin: 0 0 5px;
+        font-weight: 600;
+        font-size: 25px;
+        color: $smooth-green;
+      }
+      p {
+        font-size: 12px;
+        color: $smooth-gray0;
+      }
+    }
+  }
+  input[type="email"], input[type="text"], input[type="password"], textarea {
+    border: 1px solid $light-gray;
+    border-radius: 3px;
+    padding: 5px 10px;
+    font-size: 14px;
+    &:focus, &:hover {
+      border-color: $smooth-green;
+    }
+  }
+  .gender-select, .country-select {
+    display: inline-block;
+    vertical-align: top;
+    width: 47.2%;
+    margin-right: -4px;
+    border: 1px solid $light-gray;
+    border-radius: 3px;
+    select {
+      padding: 0 10px;
+      font-size: 14px;
+    }
+    &:after {
+      content: "";
+      right: 6px;
+      width: 10px;
+      height: 15px;
+      background: url(/images/icon/gender.png) no-repeat 0 0;
+    }
+  }
+  .country-select {
+    margin-left: 20px;
+    &:after {
+      width: 13px;
+      height: 12px;
+      margin-top: 1px;
+      background: url(/images/icon/country.png) no-repeat 0 0;
+    }
+  }
+  .form-info {
+    text-align: center;
+    color: $smooth-gray0;
+    a {
+      font-style: italic;
+      color: $red;
+      &:hover {
+        color: $gray;
+      }
+    }
+  }
+  &.login-modal, &.forgot-password-modal {
+    .modal-content {
+      max-width: 600px;
+    }
+    .close {
+      color: #fff;
+    }
+    .modal-img {
+      right: 0;
+      left: auto;
+      width: 250px;
+    }
+    .form-area {
+      margin-left: 0;
+      width: calc(100% - 250px);
+      .form-title {
+        margin-bottom: 35px;
+      }
+    }
+  }
+}
+
+.ReactModal__Body--open {
+  overflow: hidden;
+}
+
+.ReactModalPortal {
+  position: relative;
+  z-index: 100;
+}
+
+.ReactModal__Overlay {
+  background-color: rgba(255, 255, 255, .9) !important;
+}
+
+.ReactModal__Content {
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background-color: transparent !important;
+  padding: 0 !important;
+}
+
